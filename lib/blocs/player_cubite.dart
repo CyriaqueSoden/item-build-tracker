@@ -6,14 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/profil.dart';
 import '../repositories/player_repository.dart';
 
-class PlayerCubit extends Cubit<Player> {
+class PlayerCubit extends Cubit<List<Player>> {
   final PlayerRepository playerRepository;
   PlayerCubit(this.playerRepository)
-      : super(Player(Profil('', 0, 'profil doesnt exist', '', '', 0), []));
+      : super([Player(Profil('', 0, 'profil doesnt exist', '', '', 0), [])]);
 
-  Future<void> loadProfil(query) async {
-    final Future<List<Player>> player = playerRepository.loadPlayers();
-    emit(player);
+  Future<void> loadPlayer() async {
+    final List<Player> players =
+        await playerRepository.loadPlayers();
+    emit(players);
   }
 
   

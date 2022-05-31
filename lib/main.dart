@@ -1,4 +1,6 @@
+import 'package:api_riot/blocs/player_cubite.dart';
 import 'package:api_riot/blocs/profil_cubite.dart';
+import 'package:api_riot/repositories/player_repository.dart';
 import 'package:api_riot/repositories/profil_repository.dart';
 import 'package:api_riot/screens/add.dart';
 import 'package:api_riot/screens/home.dart';
@@ -9,6 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   final ProfilRepository preferencesRepository = ProfilRepository();
   final ProfilCubit profilCubit = ProfilCubit(preferencesRepository);
+  final PlayerRepository playerRepository = PlayerRepository();
+  final PlayerCubit playerCubit = PlayerCubit(playerRepository);
   runApp(BlocProvider<ProfilCubit>(
     create: (_) => profilCubit,
     child: MyApp(),

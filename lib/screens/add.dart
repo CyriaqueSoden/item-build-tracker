@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../blocs/player_cubite.dart';
+import '../models/player.dart';
+
 
 class Add extends StatelessWidget {
   const Add({Key? key}) : super(key: key);
@@ -9,36 +13,13 @@ class Add extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('API Riot'),
+          title: const Text('Profil'),
         ),
-        body: BlocListener<ProfilCubit, Profil>(
-            listener: (context, state) {
-              if (state.summonerLevel > 0) {
-                Navigator.of(context).pushNamed('/profil_view');
-              } else {
-                print('Profil doesnt exist');
-              }
-            },
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: _profilController,
-                ),
-                ElevatedButton(
-                    child: const Text('Search'),
-                    onPressed: () {
-                      context
-                          .read<ProfilCubit>()
-                          .loadProfil(_profilController.text);
-                    }),
-                ElevatedButton(
-                    child: const Text('Add new account'),
-                    onPressed: () {
-                      context
-                          .read<ProfilCubit>()
-                          .loadProfil(_profilController.text);
-                    })
-              ],
-            ))
+        body:
+            BlocBuilder<PlayerCubit, List<Player>>(builder: ((context, state) {
+          return Column(
+            children: [Text('${state[0].profil}')],
+          );
+        })));
   }
 }

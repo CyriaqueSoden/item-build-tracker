@@ -4,6 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../blocs/player_cubite.dart';
 import '../blocs/profil_cubite.dart';
 import '../models/profil.dart';
 
@@ -40,10 +41,8 @@ class Home extends StatelessWidget {
                     }),
                 ElevatedButton(
                     child: const Text('Add new account'),
-                    onPressed: () {
-                      context
-                          .read<ProfilCubit>()
-                          .loadProfil(_profilController.text);
+                    onPressed: () async {
+                      await Navigator.of(context).pushNamed('/add');
                     })
               ],
             )));
