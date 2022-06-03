@@ -10,19 +10,19 @@ class Profil {
   const Profil(this.accountId, this.profileIconId, this.name, this.id,
       this.puuid, this.summonerLevel);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'accountId': accountId,
-      'profileIconId': profileIconId,
-      'name': name,
-      'id': id,
-      'puuid': puuid,
-      'summonerLevel': summonerLevel,
+  Map<String, dynamic> toJson() => {
+        "accountId": accountId,
+        "profileIconId": profileIconId,
+        "name": name,
+        "id": id,
+        "puuid": puuid,
+        "summonerLevel": summonerLevel,
     };
-  }
 
   factory Profil.fromJson(Map<String, dynamic> json) {
     return Profil(json['accountId'], json['profileIconId'], json['name'],
         json['id'], json['puuid'], json['summonerLevel']);
   }
+
+    
 }

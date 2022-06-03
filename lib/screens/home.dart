@@ -4,14 +4,14 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../blocs/player_cubite.dart';
+import '../blocs/champion_cubite.dart';
 import '../blocs/profil_cubite.dart';
 import '../models/profil.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
-  final TextEditingController _profilController = TextEditingController();
+  final TextEditingController _championController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,23 +21,27 @@ class Home extends StatelessWidget {
         ),
         body: BlocListener<ProfilCubit, Profil>(
             listener: (context, state) {
-              if (state.summonerLevel > 0) {
-                Navigator.of(context).pushNamed('/profil_view');
-              } else {
-                print('Profil doesnt exist');
-              }
+              Navigator.of(context).pushNamed('/profil_view');
             },
             child: Column(
               children: [
-                TextFormField(
-                  controller: _profilController,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 8.0),
+                  child: TextFormField(
+                    controller: _championController,
+                    decoration: InputDecoration(
+                        labelText: "Champion",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                  ),
                 ),
                 ElevatedButton(
                     child: const Text('Search'),
                     onPressed: () {
                       context
                           .read<ProfilCubit>()
-                          .loadProfil(_profilController.text);
+                          .loadProfil(_championController.text);
                     }),
                 ElevatedButton(
                     child: const Text('Add new account'),
