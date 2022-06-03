@@ -17,4 +17,12 @@ class Champion {
         List<Profil>.from(json["profils"].map((x) => Profil.fromJson(x))),
         json['champion']);
   }
+
+  factory Champion.createChampion(Map<String, dynamic> json) {
+    return Champion(
+        [],
+        json['data']['name']);
+  }
+
+
 }

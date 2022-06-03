@@ -1,4 +1,5 @@
 import 'package:api_riot/repositories/profil_repository.dart';
+import 'package:api_riot/screens/profil_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,6 +13,7 @@ class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
   final TextEditingController _championController = TextEditingController();
+  String nom = "";
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +41,13 @@ class Home extends StatelessWidget {
                 ElevatedButton(
                     child: const Text('Search'),
                     onPressed: () {
-                      context
-                          .read<ProfilCubit>()
-                          .loadProfil(_championController.text);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ProfilView(nom: _championController.text),
+                        ),
+                      );
                     }),
                 ElevatedButton(
                     child: const Text('Add new account'),

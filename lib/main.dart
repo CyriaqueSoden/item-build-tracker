@@ -20,6 +20,7 @@ void main() {
       child: MyApp(),
     ),
   ));
+  championCubit.loadChampion();
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => Home(),
-        '/profil_view': (context) => ProfilView(),
+        '/profil_view': (context) => ProfilView(nom: "",),
         '/add': (context) => Add(),
       },
       title: 'API Riot',
