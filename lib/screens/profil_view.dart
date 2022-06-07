@@ -21,7 +21,7 @@ class ProfilView extends StatelessWidget {
             builder: (context, championState) {
           return BlocBuilder<RechercheCubit, String>(
               builder: (context, rechercheState) {
-            lebordel = await matchRepository.loadMatch(championState, rechercheState)
+                lebordel = await matchRepository.loadMatch(championState, rechercheState);
             return Column(
               children: [
                 for (List list in lebordel)
