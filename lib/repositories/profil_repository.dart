@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 class ProfilRepository {
   Future<Profil> fetchAddresses(String query) async {
     final Response response = await get(Uri.parse(
-        'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/$query?api_key=RGAPI-9832e21b-8550-46e7-a58d-969de41daac1'));
+        'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/$query?api_key=RGAPI-3c045ead-652c-4de9-8744-4caabccf6bda'));
     if (response.statusCode == 200) {
       Profil profil = Profil.fromJson(jsonDecode(response.body));
       return profil;

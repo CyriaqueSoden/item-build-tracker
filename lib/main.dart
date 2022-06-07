@@ -1,5 +1,6 @@
 import 'package:api_riot/blocs/champion_cubite.dart';
 import 'package:api_riot/blocs/profil_cubite.dart';
+import 'package:api_riot/blocs/recherche_cubite.dart';
 import 'package:api_riot/repositories/champion_repository.dart';
 import 'package:api_riot/repositories/profil_repository.dart';
 import 'package:api_riot/screens/add.dart';
@@ -13,11 +14,15 @@ void main() {
   final ProfilCubit profilCubit = ProfilCubit(preferencesRepository);
   final ChampionRepository championRepository = ChampionRepository();
   final ChampionCubit championCubit = ChampionCubit(championRepository);
+  final RechercheCubit rechercheCubit = RechercheCubit();
   runApp(BlocProvider<ProfilCubit>(
-    create: (_) => profilCubit,
+    create: (context) => profilCubit,
     child: BlocProvider<ChampionCubit>(
-      create: (_) => championCubit,
-      child: MyApp(),
+      create: (context) => championCubit,
+      child: BlocProvider<RechercheCubit>(
+        create: (context) => rechercheCubit,
+        child: MyApp(),
+      ),
     ),
   ));
   championCubit.loadChampion();
@@ -32,7 +37,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => Home(),
-        '/profil_view': (context) => ProfilView(nom: "",),
+        '/profil_view': (context) => ProfilView(),
         '/add': (context) => Add(),
       },
       title: 'API Riot',

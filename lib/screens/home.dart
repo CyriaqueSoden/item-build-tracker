@@ -1,3 +1,5 @@
+import 'package:api_riot/blocs/recherche_cubite.dart';
+import 'package:api_riot/repositories/champion_repository.dart';
 import 'package:api_riot/repositories/profil_repository.dart';
 import 'package:api_riot/screens/profil_view.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +15,6 @@ class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
   final TextEditingController _championController = TextEditingController();
-  String nom = "";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +41,13 @@ class Home extends StatelessWidget {
                 ElevatedButton(
                     child: const Text('Search'),
                     onPressed: () {
+                      context
+                          .read<RechercheCubit>()
+                          .emiteRecherche(_championController.text);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              ProfilView(nom: _championController.text),
+                          builder: (context) => ProfilView(),
                         ),
                       );
                     }),
@@ -53,6 +55,11 @@ class Home extends StatelessWidget {
                     child: const Text('Add new account'),
                     onPressed: () async {
                       await Navigator.of(context).pushNamed('/add');
+                    }),
+                ElevatedButton(
+                    child: const Text('Delete all acount'),
+                    onPressed: () async {
+                      ChampionRepository().clearAll();
                     })
               ],
             )));

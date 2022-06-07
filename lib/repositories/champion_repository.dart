@@ -23,5 +23,9 @@ class ChampionRepository {
 
     return champions;
   }
-}
 
+  clearAll() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
+  }
+}

@@ -12,7 +12,7 @@ import '../repositories/champion_repository.dart';
 
 class ChampionCubit extends Cubit<List<Champion>> {
   final ChampionRepository championRepository;
-  ChampionCubit(this.championRepository) : super([Champion([], "ezreal")]);
+  ChampionCubit(this.championRepository) : super([Champion([], "")]);
 
   void addChampion(Champion champion) {
     emit([...state, champion]);
@@ -22,7 +22,6 @@ class ChampionCubit extends Cubit<List<Champion>> {
   Future<void> loadChampion() async {
     List<Champion> champions = await championRepository.loadChampions();
     if (champions.length < 10) {
-      // champions = createChampion();
       champions = BigData().createData();
     }
     emit(champions);
