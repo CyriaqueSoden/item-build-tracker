@@ -4,6 +4,7 @@ import 'package:api_riot/models/profil.dart';
 import 'package:api_riot/repositories/match_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/retry.dart';
 import '../blocs/champion_cubite.dart';
 
 class ProfilView extends StatelessWidget {
@@ -21,11 +22,31 @@ class ProfilView extends StatelessWidget {
             builder: (context, championState) {
           return BlocBuilder<RechercheCubit, String>(
               builder: (context, rechercheState) {
-                lebordel = await matchRepository.loadMatch(championState, rechercheState);
             return Column(
               children: [
-                for (List list in lebordel)
-                  for (List list2 in list) Text("${list2[0]} ${list2[1]}")
+                FutureBuilder<List<List<String>>>(
+                    future: matchRepository.loadMatch(
+                        championState, rechercheState),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        lebordel = snapshot.data!;
+                        return Flexible(
+                          child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                    onTap: () {},
+                                    title: Text(""),
+                                    subtitle: Text(
+                                        '${lebordel[index][0]} ${lebordel[index][1]}'));
+                              },
+                              itemCount: lebordel.length),
+                        );
+                      } else {
+                        return Text('waiting');
+                      }
+                    }),
               ],
             );
           });

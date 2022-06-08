@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:api_riot/models/profil.dart';
 import 'package:http/http.dart';
 
+import '../models/api_key.dart';
+
 class ProfilRepository {
   Future<Profil> fetchAddresses(String query) async {
     final Response response = await get(Uri.parse(
-        'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/$query?api_key=RGAPI-3c045ead-652c-4de9-8744-4caabccf6bda'));
+        'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/$query?api_key=${ApiKey.key}'));
     if (response.statusCode == 200) {
       Profil profil = Profil.fromJson(jsonDecode(response.body));
       return profil;
