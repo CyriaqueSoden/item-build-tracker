@@ -1,15 +1,14 @@
 import 'package:api_riot/blocs/recherche_cubite.dart';
 import 'package:api_riot/models/champion.dart';
-import 'package:api_riot/models/profil.dart';
-import 'package:api_riot/repositories/match_repository.dart';
+import 'package:api_riot/models/match.dart';
+import 'package:api_riot/repositories/match_id_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/retry.dart';
 import '../blocs/champion_cubite.dart';
 
 class ProfilView extends StatelessWidget {
   ProfilView({Key? key}) : super(key: key);
-  List<List<String>> lebordel = [];
+  List<Match> lebordel = [];
   MatchRepository matchRepository = MatchRepository();
 
   @override
@@ -24,7 +23,7 @@ class ProfilView extends StatelessWidget {
               builder: (context, rechercheState) {
             return Column(
               children: [
-                FutureBuilder<List<List<String>>>(
+                FutureBuilder<List<Match>>(
                     future: matchRepository.loadMatch(
                         championState, rechercheState),
                     builder: (context, snapshot) {
@@ -39,7 +38,7 @@ class ProfilView extends StatelessWidget {
                                     onTap: () {},
                                     title: Text(""),
                                     subtitle: Text(
-                                        '${lebordel[index][0]} ${lebordel[index][1]}'));
+                                        '${lebordel[index].listItem[0]}, ${lebordel[index].listItem[1]}, ${lebordel[index].listItem[2]}'));
                               },
                               itemCount: lebordel.length),
                         );
