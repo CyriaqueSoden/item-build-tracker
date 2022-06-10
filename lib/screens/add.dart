@@ -42,6 +42,8 @@ class Add extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextFormField(
+                    
+                    
                     controller: _addChampionController,
                     decoration: InputDecoration(
                         labelText: "Champion",

@@ -29,6 +29,7 @@ class ProfilView extends StatelessWidget {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         lebordel = snapshot.data!;
+                        lebordel.sort((a, b) => b.date.compareTo(a.date));
                         return Flexible(
                           child: ListView.builder(
                               scrollDirection: Axis.vertical,
@@ -38,7 +39,7 @@ class ProfilView extends StatelessWidget {
                                     onTap: () {},
                                     title: Text(""),
                                     subtitle: Text(
-                                        '${lebordel[index].listItem[0]}, ${lebordel[index].listItem[1]}, ${lebordel[index].listItem[2]}'));
+                                        '${lebordel[index].listItem[0].name}, ${lebordel[index].profil.name}'));
                               },
                               itemCount: lebordel.length),
                         );
