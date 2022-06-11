@@ -19,10 +19,10 @@ class MatchRepository {
               'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${profil.puuid}/ids?start=0&count=5&api_key=${ApiKey.key}'));
           if (response.statusCode == 200) {
             for (String matchId in jsonDecode(response.body).cast<String>()) {
-              listeMatchs.add(Match(matchId, profil, true, 0, []));
+              listeMatchs.add(Match(matchId, profil, '', 0, []));
             }
           } else {
-            listeMatchs.add(Match('Error', profil, true, 0, []));
+            listeMatchs.add(Match('Error', profil, '', 0, []));
           }
         }
       }
