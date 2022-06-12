@@ -34,7 +34,7 @@ class Add extends StatelessWidget {
                   child: TextFormField(
                     controller: _addNameController,
                     decoration: InputDecoration(
-                        labelText: "Nom du compte",
+                        labelText: "Account name",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10))),
                   ),
@@ -42,8 +42,6 @@ class Add extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextFormField(
-                    
-                    
                     controller: _addChampionController,
                     decoration: InputDecoration(
                         labelText: "Champion",
@@ -52,7 +50,7 @@ class Add extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                    child: const Text('Ajouter'),
+                    child: const Text('Add'),
                     onPressed: () {
                       validate(context);
                     }),

@@ -1,16 +1,3 @@
-# api_riot
-
-OP.GG 2.0
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Afin d'utiliser l'application il faut cliquer sur "add new account",puis dans le formfield "champion" ajouter un champion(la liste des champions se trouve dans data.dart) et dans le forme field "Account name" ajouter un nom de compte qui vas s'associer au champion (pour tester je conseille de mettre Riven en champion et Built en compte) .
+Si on cherche par la suite sur l'écran d'accueil le nom d'un champion l'application va renvoyer les objets achetés par les différents comptes durant leurs dernières parties avec le champion .
+Pour faire appel à l'api il faut une clef qui expire toutes les 24h,j'ai faits une demande pour avoir une clef permanente mais elle est toujours en cours .En attendant je vais actualiser la clef tous les jours
