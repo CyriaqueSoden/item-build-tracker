@@ -37,12 +37,13 @@ class ProfilView extends StatelessWidget {
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                return Row(children: [
+                                return Card(
+                                    child: Row(children: [
                                   Text(
                                       '${listMatch[index].profil.name}, ${listMatch[index].playerWin}'),
                                   Flexible(
                                     child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
+                                      // scrollDirection: Axis.horizontal,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
@@ -58,7 +59,7 @@ class ProfilView extends StatelessWidget {
                                           listMatch[index].listItem.length,
                                     ),
                                   )
-                                ]);
+                                ]));
                               },
                               itemCount: listMatch.length),
                         );
