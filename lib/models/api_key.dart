@@ -1,3 +1,3 @@
 class ApiKey {
-  static String key = "RGAPI-010b5c4b-3a32-4247-a2b0-11e86d4f9c80";
+  static String key = "RGAPI-6e4c4ba5-7264-4867-a484-1d0813d9087e";
 }
