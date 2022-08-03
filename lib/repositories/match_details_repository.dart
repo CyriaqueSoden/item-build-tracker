@@ -10,7 +10,7 @@ import '../models/match.dart';
 
 class MatchDetailsRepository {
   Future<List<Match>> getDetails(listeMatchs, champName) async {
-    // ItemNameRepository itemNameRepository = ItemNameRepository();
+    ItemNameRepository itemNameRepository = ItemNameRepository();
     for (Match match in listeMatchs) {
       if (match.id != "Error") {
         final Response response = await get(Uri.parse(
@@ -25,11 +25,11 @@ class MatchDetailsRepository {
                 if (json['info']['participants'][j]['championName'] ==
                     champName) {
                   for (int i = 0; i < 6; i++) {
-                    if (json['info']['participants'][j]['item${i}'] != 0) {
+                    if (json['info']['participants'][j]['item$i'] != 0) {
                       match.listItem.add(Item(
-                          json['info']['participants'][j]['item${i}'],
-                          '')); //await itemNameRepository.loadItem(
-                      // json['info']['participants'][j]['item${i}'])
+                          json['info']['participants'][j]['item$i'],
+                          await itemNameRepository.loadItem(
+                              json['info']['participants'][j]['item$i'])));
                     }
                   }
                   if (json['info']['participants'][j]['win'] == true) {

@@ -40,7 +40,7 @@ class ProfilView extends StatelessWidget {
                                 return Card(
                                     child: Row(children: [
                                   Text(
-                                      '${listMatch[index].profil.name}, ${listMatch[index].playerWin}'),
+                                      '${listMatch[index].profil.name}, ${listMatch[index].playerWin}, '),
                                   Flexible(
                                     child: ListView.builder(
                                       // scrollDirection: Axis.horizontal,
@@ -49,11 +49,13 @@ class ProfilView extends StatelessWidget {
                                       shrinkWrap: true,
                                       itemBuilder: (context, index2) {
                                         return Flexible(
-                                            child: Image(
-                                                width: 100,
-                                                height: 100,
-                                                image: NetworkImage(
-                                                    'http://ddragon.leagueoflegends.com/cdn/12.11.1/img/item/${listMatch[index].listItem[index2].id}.png')));
+                                            child: Tooltip(
+                                              message: listMatch[index].listItem[index2].name,
+                                                child: Image(
+                                                    width: 100,
+                                                    height: 100,
+                                                    image: NetworkImage(
+                                                         'http://ddragon.leagueoflegends.com/cdn/12.11.1/img/item/${listMatch[index].listItem[index2].id}.png'))));
                                       },
                                       itemCount:
                                           listMatch[index].listItem.length,
