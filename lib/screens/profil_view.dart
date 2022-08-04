@@ -40,19 +40,25 @@ class ProfilView extends StatelessWidget {
                                 return Card(
                                     child: Row(children: [
                                   if (listMatch[index].playerWin == "Win") ...[
-                                    Text(
-                                        '${listMatch[index].profil.name}, ${listMatch[index].playerWin} ',
-                                        style: const TextStyle(
-                                          color: Colors.green,
-                                          fontSize: 15,
-                                        )),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        child: Text(
+                                            '${listMatch[index].profil.name}, ${listMatch[index].playerWin} ',
+                                            style: const TextStyle(
+                                              color: Colors.green,
+                                              fontSize: 15,
+                                            ))),
                                   ] else ...[
-                                    Text(
-                                        '${listMatch[index].profil.name}, ${listMatch[index].playerWin} ',
-                                        style: const TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 15,
-                                        )),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        child: Text(
+                                            '${listMatch[index].profil.name}, ${listMatch[index].playerWin} ',
+                                            style: const TextStyle(
+                                              color: Colors.red,
+                                              fontSize: 15,
+                                            ))),
                                   ],
                                   Flexible(
                                       child: Container(
@@ -70,7 +76,7 @@ class ProfilView extends StatelessWidget {
                                                 .name,
                                             child: Padding(
                                                 padding: EdgeInsets.fromLTRB(
-                                                    5, 4, 5, 4),
+                                                    5, 5, 5, 5),
                                                 child: Image(
                                                     image: NetworkImage(
                                                         'http://ddragon.leagueoflegends.com/cdn/12.11.1/img/item/${listMatch[index].listItem[index2].id}.png'))));
