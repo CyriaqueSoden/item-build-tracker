@@ -39,28 +39,46 @@ class ProfilView extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return Card(
                                     child: Row(children: [
-                                  Text(
-                                      '${listMatch[index].profil.name}, ${listMatch[index].playerWin}, '),
+                                  if (listMatch[index].playerWin == "Win") ...[
+                                    Text(
+                                        '${listMatch[index].profil.name}, ${listMatch[index].playerWin} ',
+                                        style: const TextStyle(
+                                          color: Colors.green,
+                                          fontSize: 15,
+                                        )),
+                                  ] else ...[
+                                    Text(
+                                        '${listMatch[index].profil.name}, ${listMatch[index].playerWin} ',
+                                        style: const TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 15,
+                                        )),
+                                  ],
                                   Flexible(
+                                      child: Container(
+                                    height: 50,
+                                    width: 1000,
                                     child: ListView.builder(
-                                      // scrollDirection: Axis.horizontal,
+                                      scrollDirection: Axis.horizontal,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemBuilder: (context, index2) {
-                                        return Flexible(
-                                            child: Tooltip(
-                                              message: listMatch[index].listItem[index2].name,
+                                        return Tooltip(
+                                            message: listMatch[index]
+                                                .listItem[index2]
+                                                .name,
+                                            child: Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    5, 4, 5, 4),
                                                 child: Image(
-                                                    width: 100,
-                                                    height: 100,
                                                     image: NetworkImage(
-                                                         'http://ddragon.leagueoflegends.com/cdn/12.11.1/img/item/${listMatch[index].listItem[index2].id}.png'))));
+                                                        'http://ddragon.leagueoflegends.com/cdn/12.11.1/img/item/${listMatch[index].listItem[index2].id}.png'))));
                                       },
                                       itemCount:
                                           listMatch[index].listItem.length,
                                     ),
-                                  )
+                                  ))
                                 ]));
                               },
                               itemCount: listMatch.length),
