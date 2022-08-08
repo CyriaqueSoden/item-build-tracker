@@ -7,13 +7,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/champion_cubite.dart';
 import '../models/champion.dart';
 
-class Add extends StatelessWidget {
+class Add extends StatefulWidget {
   Add({Key? key}) : super(key: key);
 
+  @override
+  State<Add> createState() => _AddState();
+}
+
+class _AddState extends State<Add> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+
   final TextEditingController _addChampionController = TextEditingController();
+
   final TextEditingController _addNameController = TextEditingController();
+
   final ChampionRepository championRepository = ChampionRepository();
+
   final ProfilRepository profilRepository = ProfilRepository();
 
   @override
@@ -53,6 +62,7 @@ class Add extends StatelessWidget {
                     child: const Text('Add'),
                     onPressed: () {
                       validate(context);
+                      _addNameController.clear();
                     }),
               ],
             ),
