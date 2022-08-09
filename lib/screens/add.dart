@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:api_riot/repositories/champion_repository.dart';
 import 'package:api_riot/repositories/profil_repository.dart';
 import 'package:flutter/material.dart';
@@ -35,36 +37,50 @@ class _AddState extends State<Add> {
             builder: ((context, state) {
           return Form(
             key: _formKey,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 8.0),
-                  child: TextFormField(
-                    controller: _addNameController,
-                    decoration: InputDecoration(
-                        labelText: "Account name",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 8.0),
+                    child: TextFormField(
+                      controller: _addNameController,
+                      decoration: InputDecoration(
+                          labelText: "Account name",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextFormField(
-                    controller: _addChampionController,
-                    decoration: InputDecoration(
-                        labelText: "Champion",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextFormField(
+                      controller: _addChampionController,
+                      decoration: InputDecoration(
+                          labelText: "Champion",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                    child: const Text('Add'),
-                    onPressed: () {
-                      validate(context);
-                      _addNameController.clear();
-                    }),
-              ],
+                  ElevatedButton(
+                      child: const Text('Add'),
+                      onPressed: () {
+                        validate(context);
+                        _addNameController.clear();
+                      }),
+                  ExpansionPanelList(
+                      children:
+                          BlocProvider.of<ChampionCubit>(context, listen: false)
+                              .state
+                              .map<ExpansionPanel>((Champion champion) {
+                    return ExpansionPanel(
+                        headerBuilder: (BuildContext context, bool isExpanded) {
+                          return ListTile(title: Text(champion.champion));
+                        },
+                        body: ListTile(
+                            title: Text(champion.profils.length.toString())));
+                  }).toList())
+                ],
+              ),
             ),
           );
         })));
