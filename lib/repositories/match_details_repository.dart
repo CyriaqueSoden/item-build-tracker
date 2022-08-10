@@ -50,6 +50,13 @@ class MatchDetailsRepository {
       }
     }
     listeMatchs.removeWhere((item) => item.listItem[0].id == 9999999999);
+    for (Match match in listeMatchs) {
+      if (match.listItem.length < 6) {
+        for (int k = 0; k < 6 - match.listItem.length; k++) {
+          match.listItem.add(Item(111111111111111, "empty"));
+        }
+      }
+    }
     return listeMatchs;
   }
 }

@@ -26,6 +26,7 @@ class _AddState extends State<Add> {
   final ChampionRepository championRepository = ChampionRepository();
 
   final ProfilRepository profilRepository = ProfilRepository();
+  List<bool> _isOpen = [];
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +67,29 @@ class _AddState extends State<Add> {
                       onPressed: () {
                         validate(context);
                         _addNameController.clear();
+                        setState(() {
+                          BlocProvider.of<ChampionCubit>(context, listen: false)
+                              .state;
+                        });
                       }),
-                  ExpansionPanelList(
+                  ExpansionPanelList.radio(
                       children:
                           BlocProvider.of<ChampionCubit>(context, listen: false)
                               .state
-                              .map<ExpansionPanel>((Champion champion) {
-                    return ExpansionPanel(
-                        headerBuilder: (BuildContext context, bool isExpanded) {
-                          return ListTile(title: Text(champion.champion));
-                        },
-                        body: ListTile(
-                            title: Text(champion.profils.length.toString())));
+                              .map<ExpansionPanelRadio>((Champion champion) {
+                    return ExpansionPanelRadio(
+                      value: champion.champion,
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return ListTile(title: Text(champion.champion));
+                      },
+                      body: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Text(champion.profils[index].name);
+                          },
+                          itemCount: champion.profils.length),
+                    );
                   }).toList())
                 ],
               ),

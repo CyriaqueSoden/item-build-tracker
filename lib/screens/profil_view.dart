@@ -70,16 +70,43 @@ class ProfilView extends StatelessWidget {
                                           const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemBuilder: (context, index2) {
-                                        return Tooltip(
-                                            message: listMatch[index]
-                                                .listItem[index2]
-                                                .name,
-                                            child: Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    5, 5, 5, 5),
-                                                child: Image(
-                                                    image: NetworkImage(
-                                                        'http://ddragon.leagueoflegends.com/cdn/12.11.1/img/item/${listMatch[index].listItem[index2].id}.png'))));
+                                        return Container(
+                                          child: LayoutBuilder(
+                                              builder: (context, constraints) {
+                                            if (listMatch[index]
+                                                    .listItem[index2]
+                                                    .name !=
+                                                "empty") {
+                                              return Tooltip(
+                                                  message: listMatch[index]
+                                                      .listItem[index2]
+                                                      .name,
+                                                  child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              5, 5, 5, 5),
+                                                      child: Image(
+                                                          image: NetworkImage(
+                                                              'http://ddragon.leagueoflegends.com/cdn/12.11.1/img/item/${listMatch[index].listItem[index2].id}.png'))));
+                                            } else {
+                                              return Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          5, 5, 5, 5),
+                                                  child: Container(
+                                                    height: 48,
+                                                    width: 40,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            shape: BoxShape
+                                                                .rectangle,
+                                                            color: Colors.grey),
+                                                    child: const Text(""),
+                                                  ));
+                                            }
+                                            ;
+                                          }),
+                                        );
                                       },
                                       itemCount:
                                           listMatch[index].listItem.length,
