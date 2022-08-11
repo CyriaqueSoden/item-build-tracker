@@ -83,7 +83,7 @@ class ProfilView extends StatelessWidget {
                                                       .name,
                                                   child: Padding(
                                                       padding:
-                                                          EdgeInsets.fromLTRB(
+                                                          const EdgeInsets.fromLTRB(
                                                               5, 5, 5, 5),
                                                       child: Image(
                                                           image: NetworkImage(
